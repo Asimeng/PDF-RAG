@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# Local configuration & secrets
+.env
+
+# Data: indexes, downloaded models, uploaded PDFs
+data/
+*.pdf
+
+# Evaluation outputs (commit selected reports manually with `git add -f`)
+eval/results/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

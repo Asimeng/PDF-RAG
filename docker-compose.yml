@@ -1,0 +1,82 @@
+# One-command deployment for a GPU server.
+#
+#   Server already runs Ollama natively (your case):
+#       docker compose up -d --build
+#
+#   Also start Ollama in a container (fresh server):
+#       docker compose --profile with-ollama up -d --build
+#       (then set RAG_OLLAMA_URL=http://ollama:11434 in .env)
+#
+# Then open the GUI at http://<server>:8501
+# (API at http://<server>:8000, interactive docs: /docs)
+
+services:
+  qdrant:
+    image: qdrant/qdrant:latest   # pin a version (e.g. qdrant/qdrant:v1.x.y) for production
+    restart: unless-stopped
+    volumes:
+      - ./data/qdrant_server:/qdrant/storage
+    # Not exposed publicly; only the app talks to it.
+
+  app:
+    build:
+      context: .
+      args:
+        WITH_CUDA: "false"        # "true" runs the reranker on GPU (also uncomment deploy: below)
+    restart: unless-stopped
+    depends_on: [qdrant]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      RAG_PROFILE: ${RAG_PROFILE:-auto}
+      RAG_OLLAMA_URL: ${RAG_OLLAMA_URL:-http://host.docker.internal:11434}
+      RAG_QDRANT_URL: http://qdrant:6333
+      RAG_API_HOST: 0.0.0.0
+    extra_hosts:
+      - "host.docker.internal:host-gateway"   # lets the container reach Ollama on the host
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices: [{ driver: nvidia, count: 1, capabilities: [gpu] }]
+
+  gui:
+    build: .                     # same image as the app, different command
+    restart: unless-stopped
+    depends_on: [app]
+    command: ["python", "-m", "streamlit", "run", "src/ragapp/gui/app.py",
+              "--server.address", "0.0.0.0", "--server.port", "8501", "--server.headless", "true",
+              "--server.maxUploadSize", "200", "--browser.gatherUsageStats", "false",
+              "--client.toolbarMode", "minimal", "--theme.primaryColor", "#2563eb"]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      RAG_API_URL: http://app:8000   # the GUI talks to the API over the internal network
+    ports:
+      - "8501:8501"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8501/_stcore/health').status==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+
+  ollama:
+    profiles: ["with-ollama"]
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    environment:
+      OLLAMA_KEEP_ALIVE: 30m
+      # Restrict to idle GPUs on a shared server, e.g. "0,2"
+      CUDA_VISIBLE_DEVICES: ${OLLAMA_GPUS:-0}
+    volumes:
+      - ./data/ollama:/root/.ollama
+    ports:
+      - "11434:11434"
+    deploy:
+      resources:
+        reservations:
+          devices: [{ driver: nvidia, count: all, capabilities: [gpu] }]

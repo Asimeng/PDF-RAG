@@ -1,0 +1,22 @@
+{"id": "wilk-01", "question": "How many COVID-19 patients and healthy controls were profiled with single-cell RNA sequencing in the Wilk et al. study, and how many patients had ARDS?", "file": "nihms-1606899.pdf", "pages": [1, 2], "must_include": ["seven", "six"]}
+{"id": "wilk-02", "question": "Which novel cell population was significantly increased only in patients with ARDS?", "file": "nihms-1606899.pdf", "pages": [3], "must_include": ["developing neutrophils"]}
+{"id": "wilk-03", "question": "Which NK cell subsets were depleted in COVID-19 patients?", "file": "nihms-1606899.pdf", "pages": [4], "must_include": ["CD56"]}
+{"id": "wilk-04", "question": "What did RNA velocity analysis reveal about plasmablasts and developing neutrophils?", "file": "nihms-1606899.pdf", "pages": [5], "must_include": ["plasmablast"]}
+{"id": "wilk-05", "question": "What were the eligibility criteria for patients enrolled in the Stanford ICU Biobank study?", "file": "nihms-1606899.pdf", "pages": [6], "must_include": ["18"]}
+{"id": "wilk-06", "question": "Which sequencing instrument was used to sequence the Seq-Well libraries?", "file": "nihms-1606899.pdf", "pages": [7], "must_include": ["NovaSeq"]}
+{"id": "wilk-07", "question": "Where can the analysis scripts of the single-cell atlas study be found?", "file": "nihms-1606899.pdf", "pages": [1, 2], "must_include": ["GitHub"]}
+{"id": "petrov-01", "question": "How does type I interferon signaling change with increasing age during SARS-CoV-2 infection?", "file": "petrov.pdf", "pages": [1, 2, 3], "must_include": ["STAT3"]}
+{"id": "petrov-02", "question": "How many samples were analyzed in the study of age-dependent differences in COVID-19, and what age range did they cover?", "file": "petrov.pdf", "pages": [2, 3], "must_include": ["164"]}
+{"id": "petrov-03", "question": "Did comorbidities or obesity explain the age-dependent immune differences that were observed?", "file": "petrov.pdf", "pages": [13], "must_include": ["not"]}
+{"id": "petrov-04", "question": "How did the pSTAT1 to pSTAT3 ratio change when IFNa was added to PBMC cultures from children compared with adults?", "file": "petrov.pdf", "pages": [15], "must_include": ["STAT3"]}
+{"id": "petrov-05", "question": "What role does SOCS3 play in JAK-STAT signaling?", "file": "petrov.pdf", "pages": [7, 16], "must_include": ["STAT1"]}
+{"id": "petrov-06", "question": "Which assay and instrument were used to quantify cytokines and chemokines in blood serum?", "file": "petrov.pdf", "pages": [29], "must_include": ["Simoa"]}
+{"id": "petrov-07", "question": "What did aged hamsters infected with SARS-CoV-2 show compared to young ones?", "file": "petrov.pdf", "pages": [13, 16], "must_include": ["ISG"]}
+{"id": "ssc-01", "question": "Which monocytes were increased in patients with mild COVID-19, similar to patients with flu-like illness?", "file": "ssc1.pdf", "pages": [4, 9], "must_include": ["HLA-DR"]}
+{"id": "ssc-02", "question": "What evidence of emergency myelopoiesis was found in severe COVID-19?", "file": "ssc1.pdf", "pages": [4, 12, 18, 19], "must_include": ["neutrophil"]}
+{"id": "ssc-03", "question": "How many single-cell transcriptomes of PBMCs were analyzed in cohort 1 of the myeloid cell study?", "file": "ssc1.pdf", "pages": [7], "must_include": ["48,266"]}
+{"id": "ssc-04", "question": "Which monocyte cluster was strongly associated with severe COVID-19 in the scRNA-seq data?", "file": "ssc1.pdf", "pages": [11], "must_include": ["S100A12"]}
+{"id": "ssc-05", "question": "What is known about PLAC8 and cytokine production by monocytes in severe COVID-19?", "file": "ssc1.pdf", "pages": [18], "must_include": ["IL-1"]}
+{"id": "ssc-06", "question": "What was the mean reported case-fatality rate among critically ill COVID-19 patients with respiratory failure?", "file": "ssc1.pdf", "pages": [18], "must_include": ["25%"]}
+{"id": "neg-01", "question": "What is the recommended dosage of ibuprofen for children with a fever?", "expect_not_found": true}
+{"id": "neg-02", "question": "Who won the 2018 FIFA World Cup?", "expect_not_found": true}
