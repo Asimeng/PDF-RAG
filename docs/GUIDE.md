@@ -1,4 +1,6 @@
-# The Complete Guide to the PDF Question-Answering System
+# PDF-RAG: The Complete Guide to the PDF Question-Answering System
+
+*Project home: <https://github.com/Asimeng/PDF-RAG>*
 
 *A plain-language guide to what this system does, how it works, how to install and run it, and how to fix it when something goes wrong.*
 
@@ -262,6 +264,7 @@ Re-ingesting simply means running `rag ingest data/pdfs` again under the new pro
 |---|---|---|
 | **Python 3.11** (3.10–3.13 work) | The system is written in Python | `py -3.11 --version` (Windows) or `python3.11 --version` (Linux/macOS) |
 | **Ollama** | Runs the answering AI models | `ollama --version` |
+| **Git** | Downloads the project from GitHub ([github.com/Asimeng/PDF-RAG](https://github.com/Asimeng/PDF-RAG)). Without Git, use the green *Code → Download ZIP* button on that page and unzip it into a folder named `PDF-RAG` | `git --version` |
 | ~3 GB free disk (laptop) | AI models + index | |
 | Internet (first run only) | To download models | |
 
@@ -269,9 +272,13 @@ Re-ingesting simply means running `rag ingest data/pdfs` again under the new pro
 
 ### 5.2 Windows laptop
 
-Open **PowerShell** in the project folder (`J:\RAG`) and run these one at a time:
+Open **PowerShell** and run these one at a time:
 
 ```powershell
+# 0. Download the project and go into its folder
+git clone https://github.com/Asimeng/PDF-RAG.git
+cd PDF-RAG
+
 # 1. Create an isolated Python environment (a private box for this project's libraries)
 py -3.11 -m venv .venv
 
@@ -305,7 +312,8 @@ You should see the profile, the models, and "Ollama: reachable".
 ### 5.3 Linux GPU server
 
 ```bash
-cd /path/to/RAG
+git clone https://github.com/Asimeng/PDF-RAG.git
+cd PDF-RAG
 python3.11 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
@@ -629,7 +637,7 @@ Answer times varied between 8 and 35 seconds depending on how busy the shared GP
 ## 11. A tour of the code
 
 ```
-RAG/
+PDF-RAG/
 ├── src/ragapp/              the application (a Python "package")
 │   ├── config.py            settings + hardware profiles
 │   ├── hardware.py          GPU detection, Ollama model listing, auto profile choice

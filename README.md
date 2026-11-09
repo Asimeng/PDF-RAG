@@ -1,4 +1,4 @@
-# PDF RAG: private, cited question answering over your documents
+# PDF-RAG: private, cited question answering over your documents
 
 Ask questions about your PDFs in plain language and get **grounded answers with file and page citations**. It runs **entirely on your own hardware** with open-weight models served by [Ollama](https://ollama.com). The same codebase scales from a 2-core laptop to a multi-GPU server through **hardware profiles** that are chosen automatically.
 
@@ -93,6 +93,8 @@ Any value can be overridden with environment variables (`RAG_LLM_MODEL=…`) or 
 ## Quick start
 
 ```bash
+git clone https://github.com/Asimeng/PDF-RAG.git
+cd PDF-RAG
 python3.11 -m venv .venv && source .venv/bin/activate   # Windows: .\.venv\Scripts\Activate.ps1
 pip install -e ".[dev]"
 cp .env.example .env
